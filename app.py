@@ -143,7 +143,7 @@ def signup():
                         (name, dob, username, email, hashed_password))
                     conn.commit()
                     
-                    return redirect(url_for('index2'))
+                    return redirect(url_for('user_login'))
                 except Exception as e:
                     return render_template('signup.html', error=str(e))
                     
