@@ -23,7 +23,7 @@ header {
 }
 
 nav {
-    border-top: 2px double #ffffff;
+   
     font-size: 36px;
     color: #ffffff;
     margin: 0; 
@@ -40,7 +40,7 @@ nav {
 }
 
 .nav-list li {
-    
+    border-top: 2px double #ffffff;
     margin-right: 20px;
 }
 
