@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS news_data (
     number_of_sentences int,
     number_of_words int,
     stop_words int,
-    analysis_summary JSONB,
+    analysis_summary JSONB
 );
 """
 cursor.execute(create_news_data)
