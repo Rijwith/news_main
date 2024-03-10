@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+</head>
+<body>
+    <header>
+        <h1 class="site-name">NewsPlatform</h1>
+    </header>
+
+    <nav>
+        <ul class="nav-list">
+            <li><a href="{{ url_for('portal') }}">Home</a></li>
+            <li><a href="{{ url_for('admin_login') }}">Admin</a></li>
+            <li><a href="{{ url_for('user_login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-section">
+        <h2>Empowering You with News Analysis</h2>
+        <p>Submit URLs to analyze news articles and gain valuable insights.</p>
+    </section>
+
+    <div class="login-container">
+        
+        <h1>Login</h1>
+        
+        <form method="POST" action="{{ url_for('user_login') }}">
+            <label for="username_or_email">Username or Email:</label>
+            <input type="text" id="username_or_email" name="username_or_email" placeholder="Username or E-mail" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+
+            <input type="submit" value="Login">
+        </form>
+        
+        
+        <li><a href="/login">Login with Google</a></li>
+
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+    </div>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+
+    <section class="features-section">
+        <h2>Key Features</h2>
+        <div class="feature">
+            <h3>News Text Analysis</h3>
+            <p>Utilize advanced text analysis to extract meaningful information from news articles.</p>
+        </div>
+        <div class="feature">
+            <h3>View Analysis History</h3>
+            <p>Keep track of your submitted URLs and their analysis results.</p>
+        </div>
+        <div class="feature">
+            <h3>Admin Login</h3>
+            <p>Admins can access additional features and view the complete analysis history.</p>
+        </div>
+    </section>
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Feel free to reach out to us for any inquiries or assistance.</p>
+        <ul>
+            <li><strong>Phone:</strong> +91 9959041941</li>
+            <li><strong>Email:</strong> rijwith0417@gmail.com</li>
+            <li><strong>Address:</strong> Sitare, Lucknow, Uttarpradesh</li>
+        </ul>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2024 NewsPlatform. All rights reserved.</p>
+    </footer>

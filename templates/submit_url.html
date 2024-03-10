@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>News Analysis</title>
+</head>
+<body>
+    <section class="url_container">
+        <div class="logins">
+            <h1>News Analysis</h1>
+        </div>
+        <form action="/submit_url" method="post">
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" placeholder="Enter the URL" required>
+            <button type="submit">Submit URL</button>
+        </form><br>
+        <h1>Admin Login</h1>
+        <form action="/admin_login" method="post">
+            <button type="submit" name="password">Login</button>
+        </form>
+    </section>
+</body>
+</html>

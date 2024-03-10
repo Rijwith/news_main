@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>User Login</title>
+</head>
+<body>
+    <div class="logins">
+        <div class="login-container">
+            
+                <h1>Login</h1>
+            
+            <form method="POST" action="{{ url_for('user_login') }}">
+                <label for="username_or_email">Username or Email:</label>
+                <input type="text" id="username_or_email" name="username_or_email" placeholder="Username or E-mail" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+
+                <input type="submit" value="Login">
+            </form>
+            
+            
+            <li><a href="/login">Login with Google</a></li>
+
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+        </div>
+    </div>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+        
+</body>
+</html>

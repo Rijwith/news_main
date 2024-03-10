@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Analysis Result</title>
+</head>
+<body class="background">
+    <div class="header-container">
+        <div class="admin_">
+            <h1 style="padding-left: 600px; font-size: 95px; color: #ffffff;">NEWS</h1>
+        </div>
+        <div style="padding-right: 20px;">
+            <a class="logout-button" href="/logout">Logout</a>
+        </div>
+        
+    </div>
+    <div class="table_container">
+        <h1 style="text-align: center; font-size: 45px; border-top: 2px double #4CAF50; padding-top: 30px;">Analysis Result</h1>
+        <p style="text-align: center; font-size: 15px; padding-bottom: 10px;"><b>URL:</b> {{ url }}</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Analysis Metric</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Number of Sentences</td>
+                    <td>{{ '{:,}'.format(num_sentences) }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Words</td>
+                    <td>{{ '{:,}'.format(num_words) }}</td>
+                </tr>
+                <tr>
+                    <td>Stop Words</td>
+                    <td>{{ '{:,}'.format(stop_words) }}</td>
+                </tr>
+                <tr>
+                    <td>UPOS Tags</td>
+                    <td>
+                        <table style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>UPOS Tag</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pos_tag, count in pos_tags_dict.items() %}
+                                    <tr>
+                                        <td>{{ pos_tag }}</td>
+                                        <td>{{ count }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+    <div class="cleaned_text">
+        <h2 style="font-size: 30px; border-top: 2px double #4CAF50; padding-top: 30px;">Article:</h2>
+        <p style="line-height: 1.5;">{{ cleaned_text }}</p>
+    </div>
+
+    <a  class="back_button" href="/submit_url">Go back</a>
+    
+</body>
+</html>
