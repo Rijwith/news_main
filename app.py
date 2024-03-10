@@ -138,7 +138,7 @@ def signup():
                 cursor.execute("INSERT INTO user_credentials (name, dob, username, email, password) VALUES (%s, %s, %s, %s, %s)",
                     (name, dob, username, email, hashed_password))
                 conn.commit()
-                conn.close()
+                
 
                 return redirect(url_for('index2'))
             
@@ -236,7 +236,7 @@ def submit_url():
         cursor.execute("""INSERT INTO news_data (url, news_text, Number_of_Sentences, Number_of_Words, stop_words, analysis_summary) VALUES (%s, %s, %s, %s, %s, %s)""",
                     (url, cleaned_text, num_sentences, num_words, stop_words, json_data))
         conn.commit()
-        conn.close()
+        
 
         # Save URL to session for viewing history
         session['submitted_urls'] = session.get('submitted_urls', []) + [url]
