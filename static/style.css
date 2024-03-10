@@ -41,7 +41,7 @@ nav {
 }
 
 .nav-list li {
-    display: inline-block;
+    
     margin-right: 20px;
 }
 
@@ -218,6 +218,7 @@ button:hover, .back_button:hover {
 .header-container {
     display: flex;
     justify-content: space-between;
+    text-align: center;
     padding-bottom: 0px;
     background-color: #4CAF50;
     width: 100%;
@@ -227,6 +228,8 @@ button:hover, .back_button:hover {
     font-size: 3em;
     color: #ffffff;
     margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: center;
 }
 
