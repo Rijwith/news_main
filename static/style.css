@@ -24,10 +24,9 @@ header {
 
 nav {
     border-top: 2px double #ffffff;
-    font-size: 36px; /* Adjust the font size as needed */
+    font-size: 36px;
     color: #ffffff;
-    margin: 0; /* Remove any default margin */
-}
+    margin: 0; 
     background-color: #4CAF50;
     color: white;
     text-align: center;
