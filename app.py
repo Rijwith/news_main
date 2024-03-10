@@ -134,6 +134,8 @@ def signup():
                 hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
                 # Store user details in the database
+                conn = psycopg2.connect(**db_config)
+                cursor = conn.cursor()
                 
                 cursor.execute("INSERT INTO user_credentials (name, dob, username, email, password) VALUES (%s, %s, %s, %s, %s)",
                     (name, dob, username, email, hashed_password))
@@ -171,22 +173,28 @@ def user_login():
 
 # Function to get user by username or email
 def get_user_by_username_or_email(username_or_email):
+    conn = psycopg2.connect(**db_config)
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT name, dob, username, email, password FROM user_credentials WHERE username = %s OR email = %s", (username_or_email, username_or_email))
+        user_tuple = cursor.fetchone()
     
-    cursor.execute("SELECT name, dob, username, email, password FROM user_credentials WHERE username = %s OR email = %s", (username_or_email, username_or_email))
-    user_tuple = cursor.fetchone()
-    conn.close()
+        if user_tuple:
+            user_dict = {
+                'name': user_tuple[0],
+                'dob': user_tuple[1],
+                'username': user_tuple[2],
+                'email': user_tuple[3],
+                'password': user_tuple[4]
+            }
+            return user_dict
+        else:
+            return None
 
-    if user_tuple:
-        user_dict = {
-            'name': user_tuple[0],
-            'dob': user_tuple[1],
-            'username': user_tuple[2],
-            'email': user_tuple[3],
-            'password': user_tuple[4]
-        }
-        return user_dict
-    else:
-        return None
+    finally:
+        # Close the cursor and connection in a 'finally' block to ensure they are closed even if an exception occurs
+        cursor.close()
+        conn.close()
 
 # Function to clean news text
 def clean_news_text(news_text):
@@ -232,6 +240,8 @@ def submit_url():
         json_data = json.dumps(pos_tags_dict)
 
         # Store the data in the database
+        conn = psycopg2.connect(**db_config)
+        cursor = conn.cursor()
         
         cursor.execute("""INSERT INTO news_data (url, news_text, Number_of_Sentences, Number_of_Words, stop_words, analysis_summary) VALUES (%s, %s, %s, %s, %s, %s)""",
                     (url, cleaned_text, num_sentences, num_words, stop_words, json_data))
