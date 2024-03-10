@@ -30,11 +30,10 @@ db_config = {
     'port': '5432'
 }
 
-# Create a cursor
+
 conn = psycopg2.connect(**db_config)
 cursor = conn.cursor()
 
-# Define the SQL command to create a table
 create_user_credentials = """
 CREATE TABLE IF NOT EXISTS user_credentials (
     name varchar(255),
@@ -47,7 +46,7 @@ CREATE TABLE IF NOT EXISTS user_credentials (
 cursor.execute(create_user_credentials)
 conn.commit
 
-# Define the SQL command to create a table
+
 create_news_data = """
 CREATE TABLE IF NOT EXISTS news_data (
     url varchar(255),
@@ -96,14 +95,14 @@ def login():
 # Callback route for handling OAuth response
 @app.route('/callback')
 def callback():
-    # Handle the callback from the Google OAuth flow
+    
     flow.fetch_token(code=request.args.get('code'))
     session['google_token'] = flow.credentials.token
 
-    # Redirect to the protected route or another page
+    # Redirect to the protected route 
     return redirect(url_for('protected'))
 
-# Protected route accessible only to authenticated users
+# Protected route 
 @app.route('/protected')
 def protected():
     if 'google_token' in session:
@@ -133,10 +132,9 @@ def signup():
             if password == confirm_password and len(password) >= 8:
                 hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-                # Store user details in the database
+                
                 conn = psycopg2.connect(**db_config)
                 cursor = conn.cursor()
-                
                 cursor.execute("INSERT INTO user_credentials (name, dob, username, email, password) VALUES (%s, %s, %s, %s, %s)",
                     (name, dob, username, email, hashed_password))
                 conn.commit()
@@ -160,7 +158,6 @@ def user_login():
         # Check if the login credentials are valid
         user = get_user_by_username_or_email(username_or_email)
         if user and bcrypt.check_password_hash(user['password'], password):
-            # Store user information in the session
             
             session['username'] = user['username']
             session['email'] = user['email']
@@ -265,8 +262,7 @@ def admin_login():
                 request.form['email'],
                 request.form['password']
             )
-
-            # For simplicity, hardcoding a password here (you should use a more secure method)
+            
             if username == 'Rijwith Mamidi' and password == '1234' and email == 'rijwith0417@gmail.com':
                 session['admin'] = True
                 return redirect(url_for('view_history'))
@@ -280,7 +276,7 @@ def admin_login():
 @app.route('/view_history')
 def view_history():
     if 'admin' in session and session['admin']:
-        # Admin user, so they can view the history
+        
         conn = psycopg2.connect(**db_config)
         cursor = conn.cursor()
         cursor.execute("SELECT url, analysis_summary FROM news_data")
@@ -290,7 +286,7 @@ def view_history():
 
     return "Access denied. Only admin can view the history."
 
-# logout and redirect to submit_url page
+# logout and redirect to portal page
 @app.route('/logout')
 def logout():
     session.pop('admin', None)
