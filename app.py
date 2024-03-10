@@ -30,6 +30,38 @@ db_config = {
     'port': '5432'
 }
 
+# Create a cursor
+cursor = connection.cursor()
+
+# Define the SQL command to create a table
+create_user_credentials = """
+CREATE TABLE IF NOT EXISTS user_credentials (
+    name varchar(255),
+    dob date,
+    username varchar(50),
+    email varchar(100),
+    password varchar(255)
+);
+"""
+cursor.execute(create_user_credentials)
+
+connection.commit
+
+# Define the SQL command to create a table
+create_news_data = """
+CREATE TABLE IF NOT EXISTS news_data (
+    url varchar(255),
+    news_text TEXT,
+    number_of_sentences int,
+    number_of_words int,
+    stop_words int,
+    analysis_summary JSONB,
+);
+"""
+cursor.execute(create_news_data)
+
+connection.commit
+
 # Path to the client secrets file
 client_secrets_file = 'app.json'
 
