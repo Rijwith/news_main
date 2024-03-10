@@ -15,8 +15,11 @@ bcrypt = Bcrypt(app)
 app.secret_key = "Dakshana123"
 
 # Initialize NLTK
-nltk.download('punkt')
+nltk.download('all')
 nltk.download('averaged_perceptron_tagger')
+nltk.download("stopwords")
+nltk.download("punkt")
+nltk.download('universal_tagset')
 
 # Database configuration
 db_config = {
