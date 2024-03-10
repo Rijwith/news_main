@@ -218,7 +218,6 @@ button:hover, .back_button:hover {
 .header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding-bottom: 0px;
     background-color: #4CAF50;
     width: 100%;
