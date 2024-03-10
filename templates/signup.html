@@ -7,12 +7,11 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <div class="logins">
-        <h1>Sign Up</h1>
-        {% if error %}
-            <p class="error">{{ error }}</p>
-        {% endif %}
-    </div>
+
+    <h1>Sign Up</h1>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
 
     <form method="POST" action="{{ url_for('signup') }}">
         <label for="name">Name:</label>
