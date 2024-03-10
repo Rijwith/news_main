@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS user_credentials (
 );
 """
 cursor.execute(create_user_credentials)
-
 conn.commit
 
 # Define the SQL command to create a table
@@ -60,7 +59,6 @@ CREATE TABLE IF NOT EXISTS news_data (
 );
 """
 cursor.execute(create_news_data)
-
 conn.commit
 
 # Path to the client secrets file
@@ -234,8 +232,7 @@ def submit_url():
         json_data = json.dumps(pos_tags_dict)
 
         # Store the data in the database
-        conn = psycopg2.connect(**db_config)
-        cursor = conn.cursor()
+        
         cursor.execute("""INSERT INTO news_data (url, news_text, Number_of_Sentences, Number_of_Words, stop_words, analysis_summary) VALUES (%s, %s, %s, %s, %s, %s)""",
                     (url, cleaned_text, num_sentences, num_words, stop_words, json_data))
         conn.commit()
