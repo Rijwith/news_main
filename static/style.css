@@ -209,7 +209,20 @@ button:hover, .back_button:hover {
     text-align: left;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0px;
+    background-color: #4CAF50;
+    width: 100%;
+}
 
+.admin-title {
+    font-size: 36px;
+    color: #ffffff;
+    margin: 0;
+}
 
 table {
     margin: auto;
