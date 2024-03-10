@@ -3,6 +3,7 @@ from google_auth_oauthlib.flow import Flow
 import psycopg2
 from newspaper import Article
 import nltk
+from datetime import datetime
 from nltk import pos_tag, word_tokenize, sent_tokenize
 import json
 from bs4 import BeautifulSoup
@@ -121,7 +122,7 @@ def is_valid_gmail(email):
 def signup():
     if request.method == 'POST':
         name = request.form['name']
-        dob = request.form['dob']
+        dob_str = request.form['dob']
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
@@ -132,16 +133,20 @@ def signup():
             if password == confirm_password and len(password) >= 8:
                 hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-                
-                conn = psycopg2.connect(**db_config)
-                cursor = conn.cursor()
-                cursor.execute("INSERT INTO user_credentials (name, dob, username, email, password) VALUES (%s, %s, %s, %s, %s)",
-                    (name, dob, username, email, hashed_password))
-                conn.commit()
-                
-
-                return redirect(url_for('index2'))
-            
+                try:
+                    
+                    dob = datetime.strptime(dob_str, '%Y-%m-%d').date()
+                    
+                    conn = psycopg2.connect(**db_config)
+                    cursor = conn.cursor()
+                    cursor.execute("INSERT INTO user_credentials (name, dob, username, email, password) VALUES (%s, %s, %s, %s, %s)",
+                        (name, dob, username, email, hashed_password))
+                    conn.commit()
+                    
+                    return redirect(url_for('index2'))
+                except Exception as e:
+                    return render_template('signup.html', error=str(e))
+                    
             return render_template('signup.html', error="Invalid password or password confirmation. Please use a valid password (minimum length: 8 characters) and ensure passwords match.")
         
         return render_template('signup.html', error='Invalid Gmail address. Please use a valid Gmail address.')
