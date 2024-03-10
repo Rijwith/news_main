@@ -31,7 +31,8 @@ db_config = {
 }
 
 # Create a cursor
-cursor = connection.cursor()
+conn = psycopg2.connect(**db_config)
+cursor = conn.cursor()
 
 # Define the SQL command to create a table
 create_user_credentials = """
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS user_credentials (
 """
 cursor.execute(create_user_credentials)
 
-connection.commit
+conn.commit
 
 # Define the SQL command to create a table
 create_news_data = """
@@ -60,7 +61,7 @@ CREATE TABLE IF NOT EXISTS news_data (
 """
 cursor.execute(create_news_data)
 
-connection.commit
+conn.commit
 
 # Path to the client secrets file
 client_secrets_file = 'app.json'
@@ -135,8 +136,7 @@ def signup():
                 hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
                 # Store user details in the database
-                conn = psycopg2.connect(**db_config)
-                cursor = conn.cursor()
+                
                 cursor.execute("INSERT INTO user_credentials (name, dob, username, email, password) VALUES (%s, %s, %s, %s, %s)",
                     (name, dob, username, email, hashed_password))
                 conn.commit()
@@ -173,8 +173,7 @@ def user_login():
 
 # Function to get user by username or email
 def get_user_by_username_or_email(username_or_email):
-    conn = psycopg2.connect(**db_config)
-    cursor = conn.cursor()
+    
     cursor.execute("SELECT name, dob, username, email, password FROM user_credentials WHERE username = %s OR email = %s", (username_or_email, username_or_email))
     user_tuple = cursor.fetchone()
     conn.close()
@@ -291,5 +290,5 @@ def logout():
     return redirect(url_for('portal'))
 
 # Run the Flask app
-if __name__ == 'main':
+if __name__ == '__main__':
     app.run(debug=True)
