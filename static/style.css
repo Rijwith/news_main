@@ -222,6 +222,7 @@ button:hover, .back_button:hover {
     font-size: 36px;
     color: #ffffff;
     margin: 0;
+    text-align: center;
 }
 
 table {
