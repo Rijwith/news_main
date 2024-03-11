@@ -18,13 +18,12 @@ header {
 }
 
 .site-name {
-    font-size: 2.7em;
+    font-size: 3em;
     margin: 0;
 }
 
 nav {
     border-top: 2px double #ffffff;
-    margin: 0; 
     background-color: #4CAF50;
     color: white;
     text-align: center;
@@ -275,14 +274,13 @@ tr:nth-child(even) {
     text-decoration: none;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(33, 33, 33, 0.249);
 }
 
 .logout-button:hover {
     background-color: #409144;
     color: #ffffff;
 }
-
-
 
 
 p {
