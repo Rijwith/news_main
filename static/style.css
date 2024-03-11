@@ -230,26 +230,38 @@ button:hover, .back_button:hover {
     text-align: center;
 }
 
-table {
-    margin: auto;
-    width: 70%;
-    border-collapse: collapse;
-    text-align: left;
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
+    padding-bottom: 30px;
+}
+
+.table {
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
 }
 
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
+    text-overflow: ellipsis;
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #409144;
     color: white;
 }
 
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+.background {
+    background-color: #f2f2f2;
+    text-align: center;
+    overflow-x: auto;
+}
+
 
 .background {
     background-color: #f2f2f2;
@@ -271,11 +283,7 @@ tr:nth-child(even) {
 }
 
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+
 
 p {
     margin-top: 15px;
