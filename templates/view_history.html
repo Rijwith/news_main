@@ -30,9 +30,9 @@
             <tbody>
                 {% for data in history_data %}
                     <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ data[0] }}</td>
-                        <td>{{ data[1] }}</td>
+                        <td style="min-width: 100px;">{{ loop.index }}</td>
+                        <td style="min-width: 700px;">{{ data[0] }}</td>
+                        <td style="min-width: 300px;">{{ data[1] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
