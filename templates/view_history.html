@@ -22,17 +22,17 @@
         <table>
             <thead>
                 <tr>
-                    <th style="min-width: 150px;">S.No.</th>
-                    <th style="min-width: 500px;">URL</th>
-                    <th style="min-width: 300px;">Analysis Summary</th>
+                    <th>S.No.</th>
+                    <th>URL</th>
+                    <th>Analysis Summary</th>
                 </tr>
             </thead>
             <tbody>
                 {% for data in history_data %}
                     <tr>
-                        <td style="min-width: 150px;">{{ loop.index }}</td>
-                        <td style="min-width: 500px;">{{ data[0] }}</td>
-                        <td style="min-width: 300px;">{{ data[1] }}</td>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ data[0] }}</td>
+                        <td>{{ data[1] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
