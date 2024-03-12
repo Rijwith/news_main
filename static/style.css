@@ -37,7 +37,7 @@ nav {
 }
 
 .nav-list li {
-    
+    display: inline-block;
     margin-right: 20px;
 }
 
@@ -236,6 +236,7 @@ button:hover, .back_button:hover {
 
 .table {
     overflow-x: auto;
+    
     width: 100%;
     max-width: 100%;
 }
