@@ -262,12 +262,6 @@ tr:nth-child(even) {
     overflow-x: auto;
 }
 
-
-.background {
-    background-color: #f2f2f2;
-    text-align: center;
-}
-
 .logout-button {
     padding: 10px 25px;
     background-color: #f2f2f2;
